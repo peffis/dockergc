@@ -7,13 +7,13 @@ DOCKER="docker"
 # remove docker instances that have status=exited
 for c in $($DOCKER ps -a -q -f status=exited)
 do
-    $DOCKER rm -v $c
+    $DOCKER rm -v $c > /dev/null 2>&1
 done
 
 
 # remove dangling docker images
 for i in $($DOCKER images -f "dangling=true" -q)
 do
-    $DOCKER rmi $i
+    $DOCKER rmi $i > /dev/null 2>&1
 done
 
