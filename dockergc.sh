@@ -5,7 +5,15 @@ DOCKER=docker
 #DOCKER=sudo docker
 
 # remove docker instances that have status=exited
-$DOCKER rm -v $($DOCKER ps -a -q -f status=exited)
+for c in $($DOCKER ps -a -q -f status=exited)
+do
+    $DOCKER rm -v $c
+done
+
 
 # remove dangling docker images
-$DOCKER rmi $($DOCKER images -f "dangling=true" -q)
+for i in $($DOCKER images -f "dangling=true" -q)
+do
+    $DOCKER rmi $i
+done
+
